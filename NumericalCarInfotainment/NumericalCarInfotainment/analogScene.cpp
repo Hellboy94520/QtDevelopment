@@ -1,13 +1,13 @@
-#include "compteurscene.hpp"
-#include "CompteurItem/compteurItem.hpp"
-#include "CompteurItem/compteurItemv2.hpp"
+#include "analogScene.hpp"
+#include "GraphicsItems/compteurItem.hpp"
+#include "GraphicsItems/compteurItemv2.hpp"
 
 #include "Parameters/parametersManagers.hpp"
 #include "Parameters/screenParam.hpp"
 #include "Parameters/analogSpeedParam.hpp"
 #include "Parameters/textParam.hpp"
 
-CompteurScene::CompteurScene(const QRect& pScreenSize)
+AnalogScene::AnalogScene(const QRect& pScreenSize)
 {
     /* Récupération des informations nécessaires */
     _screenParam = ParametersManagers::get_instance()->getScreenParam();
@@ -40,7 +40,7 @@ CompteurScene::CompteurScene(const QRect& pScreenSize)
     setBackgroundBrush(QColor(0,0,0));
 }
 
-void CompteurScene::launchInitAnimation()
+void AnalogScene::launchInitAnimation()
 {
     QPointF lPosFuelMeter = _speedoMeter->getRightPoint();
     lPosFuelMeter.setX(lPosFuelMeter.x()+1);
@@ -49,7 +49,7 @@ void CompteurScene::launchInitAnimation()
 }
 
 
-CompteurScene::~CompteurScene()
+AnalogScene::~AnalogScene()
 {
     if(_speedoMeter) delete _speedoMeter;
 }

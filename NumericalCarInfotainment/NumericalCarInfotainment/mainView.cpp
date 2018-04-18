@@ -1,5 +1,5 @@
-#include "compteurview.hpp"
-#include "compteurscene.hpp"
+#include "mainView.hpp"
+#include "analogScene.hpp"
 #include "Parameters/parametersManagers.hpp"
 #include "Parameters/screenParam.hpp"
 
@@ -7,25 +7,25 @@
 #include <QApplication>
 #include <QDesktopWidget>
 
-CompteurView::CompteurView()
+MainView::MainView()
 {
     init();
-    _compteurScene->launchInitAnimation();
+    _analogScene->launchInitAnimation();
 }
 
-void CompteurView::init()
+void MainView::init()
 {
     QRect lScreen = QApplication::desktop()->screenGeometry();
     ScreenParam * lParam = ParametersManagers::get_instance()->getScreenParam();
     lParam->setScreenHeight(lScreen.height());
     lParam->setScreenWidth(lScreen.width());
 
-    _compteurScene = new CompteurScene(lScreen);
-    _compteurScene->setSceneRect(lScreen);
-    setScene(_compteurScene);
+    _analogScene = new AnalogScene(lScreen);
+    _analogScene->setSceneRect(lScreen);
+    setScene(_analogScene);
 }
 
-CompteurView::~CompteurView()
+MainView::~MainView()
 {
-    if(_compteurScene) delete _compteurScene;
+    if(_analogScene) delete _analogScene;
 }

@@ -2,7 +2,7 @@
 
 #include <QMainWindow>
 
-class CompteurView;
+class MainView;
 
 class MainWindow : public QMainWindow
 {
@@ -13,5 +13,5 @@ public:
     ~MainWindow();
 
 private:
-    CompteurView * _compteurView;
+    MainView * _mainView;
 };

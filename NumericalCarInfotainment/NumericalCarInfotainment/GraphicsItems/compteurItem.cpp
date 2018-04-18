@@ -1,5 +1,5 @@
 #include "compteurItem.hpp"
-#include "CompteurItem/aiguilleitem.hpp"
+#include "GraphicsItems/aiguilleitem.hpp"
 #include <QRect>
 #include <QBrush>
 #include <QPainter>

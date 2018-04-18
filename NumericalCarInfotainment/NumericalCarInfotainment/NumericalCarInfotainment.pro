@@ -8,7 +8,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = CompteurNumerique
+TARGET = NumericalCarInfotainment
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -26,20 +26,20 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         trace.cpp \
-        mainwindow.cpp compteurview.cpp compteurscene.cpp \
-        CompteurItem/compteurItem.cpp CompteurItem/aiguilleItem.cpp \
-    mainapplication.cpp \
-    CompteurItem/compteurItemv2.cpp \
+        mainWindow.cpp mainView.cpp analogScene.cpp \
+        mainApplication.cpp \
+    GraphicsItems/compteurItem.cpp GraphicsItems/aiguilleItem.cpp \
+    GraphicsItems/compteurItemv2.cpp \
     Parameters/parametersManagers.cpp \
     Parameters/textParam.cpp
 
 
 HEADERS += \
         trace.hpp \
-        mainwindow.hpp compteurview.hpp compteurscene.hpp \
-        CompteurItem/compteurItem.hpp CompteurItem/aiguilleItem.hpp \
-    mainapplication.hpp \
-    CompteurItem/compteurItemv2.hpp \
+        mainWindow.hpp mainView.hpp analogScene.hpp \
+    mainApplication.hpp \
+    GraphicsItems/compteurItemv2.hpp \
+GraphicsItems/compteurItem.hpp GraphicsItems/aiguilleItem.hpp \
     Parameters/parametersManagers.hpp \
     Parameters/analogSpeedParam.hpp \
     Parameters/textParam.hpp \

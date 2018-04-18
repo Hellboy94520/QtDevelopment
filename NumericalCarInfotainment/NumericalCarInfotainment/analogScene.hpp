@@ -11,12 +11,12 @@ class ScreenParam;
 class AnalogSpeedParam;
 class TextParam;
 
-class CompteurScene : public QGraphicsScene
+class AnalogScene : public QGraphicsScene
 {
 
 public:
-    CompteurScene(const QRect& pScreenSize);
-    virtual ~CompteurScene();
+    AnalogScene(const QRect& pScreenSize);
+    virtual ~AnalogScene();
 
     void launchInitAnimation();
 
