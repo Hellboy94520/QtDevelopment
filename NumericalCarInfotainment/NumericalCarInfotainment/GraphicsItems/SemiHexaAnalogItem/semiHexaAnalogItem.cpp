@@ -1,4 +1,4 @@
-#include "compteurItemv2.hpp"
+#include "GraphicsItems/SemiHexaAnalogItem/semiHexaAnalogItem.hpp"
 #include "trace.hpp"
 
 #include <QDebug>
@@ -6,7 +6,7 @@
 /* -------------------------------------------------
  *  Constructor
  * ------------------------------------------------- */
-CompteurItemV2::CompteurItemV2(const double& pSize)
+SemiHexaAnalogItem::SemiHexaAnalogItem(const double& pSize)
 {
     QPainterPath lPainterPath = createPath(pSize);
 
@@ -14,13 +14,13 @@ CompteurItemV2::CompteurItemV2(const double& pSize)
     setPen(_pen);
     setBrush(_brush);
     setPath(lPainterPath);
-    Trace::get_instance()->INFO("CompteurItemV2 is created");
+    Trace::get_instance()->INFO("SemiHexaAnalogItem is created");
 }
 
 /* -------------------------------------------------
  *  Initialisation
  * ------------------------------------------------- */
-const QPainterPath CompteurItemV2::createPath(const double& pSize)
+const QPainterPath SemiHexaAnalogItem::createPath(const double& pSize)
 {
     QPainterPath lPainterPath;
 
@@ -81,7 +81,7 @@ const QPainterPath CompteurItemV2::createPath(const double& pSize)
 }
 
 // -------------------------------------------------
-void CompteurItemV2::createText()
+void SemiHexaAnalogItem::createText()
 {
     QList<QString> lTextList;
     lTextList << "EMPTY" << "1/4" << "1/2" << "3/4" << "FULL";
@@ -97,14 +97,14 @@ void CompteurItemV2::createText()
 /* -------------------------------------------------
  * Setter
  * ------------------------------------------------- */
-const bool CompteurItemV2::setPosition(const double &pX, const double &pY)
+const bool SemiHexaAnalogItem::setPosition(const double &pX, const double &pY)
 {
     setPos(pX-_originPoint.x(), pY-_originPoint.y());
     return true;
 }
 
 // -------------------------------------------------
-const bool CompteurItemV2::setPositionFromLeftPoint(const double &pX, const double &pY)
+const bool SemiHexaAnalogItem::setPositionFromLeftPoint(const double &pX, const double &pY)
 {
     setPos(pX-_polygon.at(5).x(), pY-_polygon.at(5).y());
 }
@@ -113,7 +113,7 @@ const bool CompteurItemV2::setPositionFromLeftPoint(const double &pX, const doub
 /* -------------------------------------------------
  *
  * ------------------------------------------------- */
-void CompteurItemV2::calculSize()
+void SemiHexaAnalogItem::calculSize()
 {
     _sizeFigure.setX(_polygon.at(3).x()-_polygon.at(0).x());
     _sizeFigure.setY(_polygon.at(4).y()-_polygon.at(0).y());
@@ -125,7 +125,7 @@ void CompteurItemV2::calculSize()
 /* -------------------------------------------------
  *
  * ------------------------------------------------- */
-const QPointF& CompteurItemV2::getOrigin()
+const QPointF& SemiHexaAnalogItem::getOrigin()
 {
     _originPoint.setX((_sizeFigure.x()/2)-_polygon.at(5).x());
     _originPoint.setY((_sizeFigure.y()/2)-_polygon.at(0).y());
@@ -135,7 +135,7 @@ const QPointF& CompteurItemV2::getOrigin()
 /* -------------------------------------------------
  * Animation
  * ------------------------------------------------- */
-void CompteurItemV2::launchAnimation()
+void SemiHexaAnalogItem::launchAnimation()
 {
     /* Déclaration de l'animation */
     _animationTimer = new QTimer();
@@ -155,7 +155,7 @@ void CompteurItemV2::launchAnimation()
 }
 
 // -------------------------------------------------
-void CompteurItemV2::doTranslation()
+void SemiHexaAnalogItem::doTranslation()
 {
     if(x()<=_pointToGo.x())
     {
@@ -171,7 +171,7 @@ void CompteurItemV2::doTranslation()
 /* -------------------------------------------------
  * Destructeur
  * ------------------------------------------------- */
-CompteurItemV2::~CompteurItemV2()
+SemiHexaAnalogItem::~SemiHexaAnalogItem()
 {
     if(_animationTimer) { delete _animationTimer; }
 }

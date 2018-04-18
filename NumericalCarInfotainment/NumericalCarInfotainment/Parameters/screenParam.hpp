@@ -1,18 +1,25 @@
 #pragma once
 
+#include <QRectF>
 
 class ScreenParam
 {
-public:
+public:    
     //Getter
-    const unsigned int& getScreenWidth() const { return _screenWidth; }
-    const unsigned int& getScreenHeight() const { return _screenHeigth; }
+    const unsigned int& getWidth() const { return _screenWidth; }
+    const unsigned int& getHeight() const { return _screenHeigth; }
 
     //Setter
-    void setScreenWidth(const unsigned int& pWidth) { _screenWidth=pWidth; }
-    void setScreenHeight(const unsigned int& pHeight) { _screenHeigth=pHeight; }
+    void setWidth(const unsigned int& pWidth) { _screenWidth=pWidth; }
+    void setHeight(const unsigned int& pHeight) { _screenHeigth=pHeight; }
 
 private:
+    void update()
+    {
+        //_centerCoordona);
+    }
+
     unsigned int _screenWidth;
     unsigned int _screenHeigth;
+    QRectF _centerCoordonate();
 };

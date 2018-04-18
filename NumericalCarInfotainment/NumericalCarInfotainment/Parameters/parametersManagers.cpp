@@ -1,11 +1,11 @@
 #include "Parameters/ParametersManagers.hpp"
-
-#include "Parameters/analogSpeedParam.hpp"
-#include "Parameters/screenParam.hpp"
-#include "Parameters/textParam.hpp"
 #include <QDebug>
 //#include <QDomDocument>
 #include <QDir>
+
+/* -------------------------------------
+ * Instance
+ ------------------------------------ */
 
 ParametersManagers * ParametersManagers::_instance = NULL;
 
@@ -33,10 +33,22 @@ bool ParametersManagers::getInformations(QFile& pFile)
     return true;
 }
 
+/* -------------------------------------
+ * Mise à jour
+ ------------------------------------ */
+void ParametersManagers::updateItemParam()
+{
+    //FAIRE : Mettre à jour les items au niveau de leur taille, à voir si on reconstruit tous ou on modifie les objets existants
 
+}
+
+
+/* -------------------------------------
+ * Constructeur / Destructeur
+ ------------------------------------ */
 ParametersManagers::ParametersManagers()
 {
-    //Faire une lecture de fichier XML pour lire les paramètres modifiable pour l'utilisateur
+    //FAIRE : une lecture de fichier XML pour lire les paramètres modifiable pour l'utilisateur
     default_ParametersManagers=false;
     /*
     QFile _File("ParametersManagers_default.xml");
@@ -55,8 +67,18 @@ ParametersManagers::ParametersManagers()
     */
     default_ParametersManagers=true;
 
-    //Initialisation des Headers
-    _textParam = new TextParam;
-    _screenParam = new ScreenParam;
-    _analogSpeedParam = new AnalogSpeedParam;
+    _circleParam = new CircleAnalogParam;
+    _semiParam = new SemiHexaAnalogParam;
+
+    _analogSpeedParam = new AnalogParam;
+    _analogSpeedParam->setSpeedParam();
+    _analogRevParam = new AnalogParam;
+    _analogRevParam->setRevAnalog();
+    _analogFuelParam = new AnalogParam;
+    _analogWaterParam = new AnalogParam;
+}
+
+ParametersManagers::~ParametersManagers()
+{
+    //A FAIRE
 }

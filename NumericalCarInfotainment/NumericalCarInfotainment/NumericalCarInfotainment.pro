@@ -28,20 +28,23 @@ SOURCES += \
         trace.cpp \
         mainWindow.cpp mainView.cpp analogScene.cpp \
         mainApplication.cpp \
-    GraphicsItems/compteurItem.cpp GraphicsItems/aiguilleItem.cpp \
-    GraphicsItems/compteurItemv2.cpp \
+    GraphicsItems/aiguilleItem.cpp \
+    GraphicsItems/CircleAnalogItem/circleAnalogItem.cpp GraphicsItems/CircleAnalogItem/circleAnalogParam.cpp \
+    GraphicsItems/SemiHexaAnalogItem/semiHexaAnalogItem.cpp GraphicsItems/SemiHexaAnalogItem/semiHexaAnalogParam.cpp \
     Parameters/parametersManagers.cpp \
-    Parameters/textParam.cpp
+    GraphicsItems/aiguilleParam.cpp
+
 
 
 HEADERS += \
         trace.hpp \
         mainWindow.hpp mainView.hpp analogScene.hpp \
-    mainApplication.hpp \
-    GraphicsItems/compteurItemv2.hpp \
-GraphicsItems/compteurItem.hpp GraphicsItems/aiguilleItem.hpp \
-    Parameters/parametersManagers.hpp \
-    Parameters/analogSpeedParam.hpp \
-    Parameters/textParam.hpp \
-    Parameters/screenParam.hpp
+        mainApplication.hpp \
+    GraphicsItems/aiguilleItem.hpp \
+    GraphicsItems/CircleAnalogItem/circleAnalogItem.hpp GraphicsItems/CircleAnalogItem/circleAnalogParam.hpp \
+    GraphicsItems/SemiHexaAnalogItem/semiHexaAnalogItem.hpp GraphicsItems/SemiHexaAnalogItem/semiHexaAnalogParam.hpp \
+    Parameters/parametersManagers.hpp Parameters/screenParam.hpp \
+    GraphicsItems/aiguilleParam.hpp \
+    Parameters/analogParam.hpp
+
 

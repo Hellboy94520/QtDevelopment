@@ -4,15 +4,20 @@
 #include <QGraphicsItemGroup>
 #include <QPointF>
 
+#include "GraphicsItems/CircleAnalogItem/circleAnalogParam.hpp"
+
+class CircleAnalogParam;
+class AnalogParam;
+
 class AiguilleItem;
 class QTimer;
 
-class CompteurItem : public QObject, public QGraphicsItemGroup
+class CircleAnalogItem : public QObject, public QGraphicsItemGroup
 {
     Q_OBJECT
 public:
-    CompteurItem(const double& pSize, const QList<QString>& pNumber, const QString& pText);
-    virtual ~CompteurItem();
+    CircleAnalogItem(AnalogParam * pAnalogParam);
+    virtual ~CircleAnalogItem();
 
     //Getter
     const QPointF& getRightPoint() { calculSize(); return _rightOriginPoint; }
@@ -25,7 +30,8 @@ private slots:
 
 private:
     //Fonction d'initialisation
-    void initCircle();
+    void initLargeCircle(const double&);
+    void initSmallCircle(const double&);
     void initAiguille();
     void initNumber(const QList<QString>& pNumber, const QString& pText);
 

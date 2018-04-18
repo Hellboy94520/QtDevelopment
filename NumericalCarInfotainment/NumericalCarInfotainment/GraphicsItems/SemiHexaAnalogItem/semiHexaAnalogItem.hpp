@@ -13,12 +13,12 @@
 #include <QTimer>
 
 
-class CompteurItemV2: public QObject, public QGraphicsPathItem
+class SemiHexaAnalogItem: public QObject, public QGraphicsPathItem
 {
     Q_OBJECT
 public:
-    CompteurItemV2(const double& pSize);
-    virtual ~CompteurItemV2();
+    SemiHexaAnalogItem(const double& pSize);
+    virtual ~SemiHexaAnalogItem();
 
     const QPointF& getOrigin();
     const QPointF& getSize() const { return _sizeFigure; }
@@ -27,7 +27,7 @@ public:
     const bool setPosition(const QPointF& pPoint) { return setPosition(pPoint.x(), pPoint.y()); }
     const bool setPosition(const double& pX, const double& pY);
     const bool setPositionFromLeftPoint(const QPointF& pPoint)
-    { setPositionFromLeftPoint(pPoint.x(),pPoint.y()); }
+    { return setPositionFromLeftPoint(pPoint.x(),pPoint.y()); }
     const bool setPositionFromLeftPoint(const double& pX, const double& pY);
 
     //Animation
