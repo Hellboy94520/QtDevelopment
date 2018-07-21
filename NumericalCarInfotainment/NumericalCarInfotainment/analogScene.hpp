@@ -4,27 +4,23 @@
 #include <QGraphicsScene>
 
 
-class CompteurItem;
-class CompteTours;
-class CompteurItemV2;
+class CircleAnalogItem;
+class SemiHexaAnalogItem;
 class ScreenParam;
-class AnalogSpeedParam;
-class TextParam;
+
 
 class AnalogScene : public QGraphicsScene
 {
 
 public:
-    AnalogScene(const QRect& pScreenSize);
+    AnalogScene();
     virtual ~AnalogScene();
 
+    void initSpeedMeter();
     void launchInitAnimation();
 
 private:
-    CompteurItem * _speedoMeter;
-    CompteurItemV2 * _fuelMeter;
-
-    ScreenParam * _screenParam;
-    AnalogSpeedParam * _analogSpeedParam;
-    TextParam * _textParam;
+    CircleAnalogItem * _speedMeter;
+    CircleAnalogItem * _revMeter;
+    SemiHexaAnalogItem * _fuelMeter;
 };

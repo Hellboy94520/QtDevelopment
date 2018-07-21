@@ -1,5 +1,9 @@
-#include "compteurItem.hpp"
+#include "GraphicsItems/CircleAnalogItem/circleAnalogItem.hpp"
 #include "GraphicsItems/aiguilleitem.hpp"
+#include "Parameters/parametersManagers.hpp"
+#include "Parameters/screenParam.hpp"
+#include "GraphicsItems/CircleAnalogItem/circleAnalogParam.hpp"
+#include "Parameters/analogParam.hpp"
 #include <QRect>
 #include <QBrush>
 #include <QPainter>
@@ -10,29 +14,40 @@
 /* ------------------------------------------------
  * Constructeur
  * ------------------------------------------------*/
-CompteurItem::CompteurItem(const double& pSize, const QList<QString>& pNumber, const QString& pText)
+CircleAnalogItem::CircleAnalogItem(AnalogParam * pAnalogParam)
 {
-    _size = pSize;
-    initCircle();
-    initAiguille();
-    initNumber(pNumber, pText);
-    searchAngleBySpeed(pNumber);
+    /* Récupération des informations nécessaires */
+    ScreenParam * lScreenParam = ParametersManagers::get_instance()->getScreenParam();
+    CircleAnalogParam * lCircleParam = ParametersManagers::get_instance()->getCircleAnalogParam();
+
+    double lHeight = lScreenParam->getHeight()*lCircleParam->getRelationLargeAnalog(); //A MODIFIER, prendre l'info du CircleAnalogParams
+    initLargeCircle(lHeight);       //Création du fond du compteur de forme ronde
+    initSmallCircle(lHeight);       //Création du cercle central cachant la forme rectangulaire de l'aiguille
+    initAiguille();                 //Création de l'aiguille
+
+    initNumber(pAnalogParam->getNumberList(), pAnalogParam->getUnity());
+    searchAngleBySpeed(pAnalogParam->getNumberList());
     calculSize();
 }
 
 /* ------------------------------------------------
  * Fonction d'initialisation
  * ------------------------------------------------*/
-void CompteurItem::initCircle()
+void CircleAnalogItem::initLargeCircle(const double& pSize)
 {
-    /* Création du grand cercle */
-    double lHalfSize = _size/2;
-    _Circle = new QGraphicsEllipseItem(-lHalfSize, -lHalfSize, _size, _size,this);
-    _Circle->setPos(lHalfSize, lHalfSize);
+    double lHalfSize = pSize/2;
+    _Circle = new QGraphicsEllipseItem(-lHalfSize, -lHalfSize, pSize, pSize,this);
     _Circle->setPen(_bleu);
     _Circle->setBrush(_blanc);
+    _Circle->setPos(lHalfSize, lHalfSize);
     _Circle->setZValue(-1);
+}
+
+// ------------------------------------------------
+void CircleAnalogItem::initSmallCircle(const double& pSize)
+{
     /* Création du cercle central */
+    double lHalfSize = pSize/2;
     double lLittleSize = lHalfSize*_littleCircleValue;
     _LittleCircle = new QGraphicsEllipseItem(-lLittleSize/2, -lLittleSize/2, lLittleSize, lLittleSize, this);
     _LittleCircle->setPos(lHalfSize, lHalfSize);
@@ -41,7 +56,7 @@ void CompteurItem::initCircle()
 }
 
 // ------------------------------------------------
-void CompteurItem::initAiguille()
+void CircleAnalogItem::initAiguille()
 {
     double lHalfSize = _size/2;
     _Aiguille = new AiguilleItem(lHalfSize, lHalfSize*0.1);
@@ -52,7 +67,7 @@ void CompteurItem::initAiguille()
 }
 
 // ------------------------------------------------
-void CompteurItem::initNumber(const QList<QString>& pNumberList,
+void CircleAnalogItem::initNumber(const QList<QString>& pNumberList,
                                  const QString& pText)
 {
     double lRayon = _size/2;
@@ -102,7 +117,7 @@ void CompteurItem::initNumber(const QList<QString>& pNumberList,
 /* ------------------------------------------------
  * Fonction d'animation
  * ------------------------------------------------*/
-void CompteurItem::launchInitAnimation()
+void CircleAnalogItem::launchInitAnimation()
 {
     /* Déclaration de l'animation */
     _animationTimer = new QTimer();
@@ -119,7 +134,7 @@ void CompteurItem::launchInitAnimation()
 }
 
 // ------------------------------------------------
-void CompteurItem::doRotation()
+void CircleAnalogItem::doRotation()
 {
     double lRotation = _Aiguille->rotation();
     if(_animationSteps==0 && lRotation>395) //360+45
@@ -140,7 +155,7 @@ void CompteurItem::doRotation()
 }
 
 // ------------------------------------------------
-void CompteurItem::changeSpeedValueAngle(const double& lAngle)
+void CircleAnalogItem::changeSpeedValueAngle(const double& lAngle)
 {
     if(_angleSpeedStep==0)
     {
@@ -153,7 +168,7 @@ void CompteurItem::changeSpeedValueAngle(const double& lAngle)
 }
 
 // ------------------------------------------------
-void CompteurItem::changeSpeedValue(const unsigned int& lAngle)
+void CircleAnalogItem::changeSpeedValue(const unsigned int& lAngle)
 {
     _SpeedNumber->setPlainText(QString::number(lAngle));
     QRectF lSize = _SpeedNumber->boundingRect();
@@ -165,7 +180,7 @@ void CompteurItem::changeSpeedValue(const unsigned int& lAngle)
 /* ------------------------------------------------
  * Fonction de calcul et de conversio
  * ------------------------------------------------*/
-void CompteurItem::searchAngleBySpeed(const QList<QString> &pNumber)
+void CircleAnalogItem::searchAngleBySpeed(const QList<QString> &pNumber)
 {
     _angleSpeedStep=0;
     bool ok;
@@ -188,7 +203,7 @@ void CompteurItem::searchAngleBySpeed(const QList<QString> &pNumber)
 }
 
 // ------------------------------------------------
-double CompteurItem::conversionDegreeToRadian(const double &lAngle) const
+double CircleAnalogItem::conversionDegreeToRadian(const double &lAngle) const
 {
     double newAngle;
     newAngle = lAngle*2*M_PI;
@@ -197,7 +212,7 @@ double CompteurItem::conversionDegreeToRadian(const double &lAngle) const
 }
 
 // ------------------------------------------------
-void CompteurItem::calculSize()
+void CircleAnalogItem::calculSize()
 {
     _rightOriginPoint.setX(_size+x());
     _rightOriginPoint.setY((_size/2)+y());
@@ -207,7 +222,7 @@ void CompteurItem::calculSize()
 /* ------------------------------------------------
  * Destructeur
  * ------------------------------------------------*/
-CompteurItem::~CompteurItem()
+CircleAnalogItem::~CircleAnalogItem()
 {
     if(_animationTimer) delete _animationTimer;
     if(_Circle) delete _Circle;
