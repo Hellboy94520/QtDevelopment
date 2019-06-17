@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<settings>
+    <app>
+        <!-- TODO -->
+    </app>
+    <desktop>
+        <!-- TODO -->
+    </desktop>
+</settings>
+
+<references>
+    <reference nom="Voiture">
+        <reference nom="Essence">
+            <reference nom="Sans Plomb 98"/>
+        </reference>
+        <reference nom="Réparation"/>
+        <reference nom="Entretien"/>
+        <reference nom="Assurance"/>
+        <reference nom="Credit"/>
+    </reference>
+</references>
+
+<payments>
+    <payment>Carte</payment>
+    <payment>Virement</payment>
+    <payment>Prélèvement</payment>
+    <payment>Chèque</payment>
+</payments>
+
+<accounts>
+    <account name="Compte Courant", bankname="Credit Agricole">
+        <transfer>
+            <date_begin>2019-04-01</date_begin>
+            <date_end>2020-04-01</date_end>
+            <frequency>month</frequency>
+            <date>3</date>
+            <cost currency="EUR">95.55</cost>
+            <reference>Voiture/Assurance</reference>
+        <transfer/>
+        <operation order=1>
+            <date>2019-06-16</date>
+            <name>Total</name>
+            <cost currency="EUR">65</cost>
+            <checked>False</checked>
+            <reference>Voiture/Essence/Sans Plomb 98</reference>
+            <payment>Carte</payment>
+            <order>04050689</order>
+        <operation/>
+    </account>
+</accounts>
