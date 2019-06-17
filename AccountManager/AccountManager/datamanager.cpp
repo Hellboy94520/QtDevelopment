@@ -32,11 +32,9 @@ DataManager::DataManager(const QString& pFileName)
 
     // If Database file not exist
     if(!_dataFile->exists())
-    {
-        qDebug(logCritical()) << "Impossible to open database file \'" << pFileName << "\'";
-        //TODO: Show pop-up to choose another file
-    }
+    { _defaultFileFound = false; return; }
 
+    _defaultFileFound = true;
     //TODO: Load data
 }
 

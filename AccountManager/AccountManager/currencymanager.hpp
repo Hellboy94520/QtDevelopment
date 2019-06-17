@@ -2,7 +2,7 @@
 #include <QObject>
 #include <QMap>
 
-class CurrencyDate;
+class CurrencyData;
 
 
 /* ----------------------------------------------------------------------------------------

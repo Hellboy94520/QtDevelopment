@@ -3,7 +3,7 @@
 #include <QString>
 #include <QDate>
 
-#include <currencymanager.hpp>
+#include "currencydata.hpp"
 
 class OperationData
 {

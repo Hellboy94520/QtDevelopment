@@ -21,7 +21,6 @@ private:
     DataManager(const QString& pFileName);
 
     QFile * _dataFile;
-    QList<QString> _referenceList;
-    QList<QString> _paymentTypeList;
+    bool _defaultFileFound = false;
 
 };
