@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui xml
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -32,7 +32,8 @@ SOURCES += \
     accountdata.cpp \
     currencymanager.cpp \
     referencemanager.cpp \
-    paymentmanager.cpp
+    paymentmanager.cpp \
+    parameterdata.cpp
 
 HEADERS += \
         mainwindow.hpp \
@@ -45,7 +46,8 @@ HEADERS += \
     referencedata.hpp \
     referencemanager.hpp \
     paymentdata.hpp \
-    paymentmanager.hpp
+    paymentmanager.hpp \
+    parameterdata.hpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

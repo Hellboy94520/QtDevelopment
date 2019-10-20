@@ -1,4 +1,4 @@
-#include "mainapplication.hpp"
+#include "mainApplication.hpp"
 #include "trace.hpp"
 #include "Parameters/parametersManagers.hpp"
 #include <QApplication>

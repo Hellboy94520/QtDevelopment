@@ -1,7 +1,8 @@
-#ifndef MAINWINDOW_HPP
-#define MAINWINDOW_HPP
+#pragma once
 
 #include <QMainWindow>
+
+class ParameterData;
 
 class MainWindow : public QMainWindow
 {
@@ -9,7 +10,8 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = 0);
-    ~MainWindow();
-};
+    virtual ~MainWindow();
 
-#endif // MAINWINDOW_HPP
+private:
+    ParameterData * _parameterData;
+};
